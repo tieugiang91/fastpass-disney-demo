@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.upwork.grpc.ticket";
+
+service TicketDetailsService {
+  rpc GetTicketDetails(TicketDetailsRequest) returns (TicketDetailsResponse);
+}
+
+service TicketNotificationService {
+  rpc NotifyRedemption(RedemptionNotificationRequest) returns (RedemptionNotificationResponse);
+}
+
+message TicketDetailsRequest {
+  string ticket_id = 1;
+}
+
+message TicketDetailsResponse {
+  string ticket_id = 1;
+  string attraction_id = 2;
+  string return_time_start = 3;
+  string return_time_end = 4;
+  string status = 5;
+}
+
+message RedemptionNotificationRequest {
+  string ticket_id = 1;
+  string redeemed_at_attraction_id = 2;
+  string redemption_time = 3;
+}
+
+message RedemptionNotificationResponse {
+  bool success = 1;
+  string message = 2;
+}
