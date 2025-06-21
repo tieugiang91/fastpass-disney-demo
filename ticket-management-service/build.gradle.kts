@@ -15,7 +15,7 @@ dependencies {
     implementation(project(":grpc-contract"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("io.github.lognet:grpc-spring-boot-starter:5.1.5")
+    implementation("net.devh:grpc-server-spring-boot-starter:3.1.0.RELEASE")
     runtimeOnly("org.postgresql:postgresql")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")

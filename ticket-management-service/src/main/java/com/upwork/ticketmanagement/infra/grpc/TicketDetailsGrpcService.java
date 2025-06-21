@@ -7,9 +7,9 @@ import com.upwork.ticketmanagement.domain.model.FastPassTicket;
 import com.upwork.ticketmanagement.domain.service.TicketService;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
-import org.lognet.springboot.grpc.GRpcService;
+import net.devh.boot.grpc.server.service.GrpcService;
 
-@GRpcService
+@GrpcService
 @AllArgsConstructor
 public class TicketDetailsGrpcService extends TicketDetailsServiceGrpc.TicketDetailsServiceImplBase {
     private final TicketService ticketService;

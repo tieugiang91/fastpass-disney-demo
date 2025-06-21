@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "f8a7c2b1-e8d9-4a9f-8b2c-3e6f1d2e5e1c",
+		"name": "FastPass Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Issue Ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Parse the response body",
+							"var jsonData = pm.response.json();",
+							"",
+							"// Save the ticketId and attractionId to collection variables",
+							"pm.collectionVariables.set(\"ticketId\", jsonData.ticketId);",
+							"pm.collectionVariables.set(\"attractionId\", jsonData.attractionId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"attractionId\": \"attraction-123\",\n    \"attractionName\": \"Space Mountain\",\n    \"waitTimeMinutes\": 0 \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tickets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tickets"
+					]
+				},
+				"description": "Issues a new FastPass ticket for a given attraction. The `waitTimeMinutes` is set to 0 for immediate testing."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ticket Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tickets/{{ticketId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tickets",
+						"{{ticketId}}"
+					]
+				},
+				"description": "Retrieves the details for the ticket created in the 'Issue Ticket' request."
+			},
+			"response": []
+		},
+		{
+			"name": "Redeem Ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/redemptions/{{attractionId}}/{{ticketId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"redemptions",
+						"{{attractionId}}",
+						"{{ticketId}}"
+					]
+				},
+				"description": "Redeems the FastPass ticket at the specified attraction. This calls the attraction-redemption-service, which in turn calls the ticket-management-service via gRPC."
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "ticketId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "attractionId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

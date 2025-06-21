@@ -6,11 +6,11 @@ import com.upwork.grpc.ticket.TicketNotificationServiceGrpc;
 import com.upwork.ticketmanagement.domain.service.TicketService;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
-import org.lognet.springboot.grpc.GRpcService;
+import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
-@GRpcService
+@GrpcService
 @AllArgsConstructor
 public class TicketNotificationGrpcService extends TicketNotificationServiceGrpc.TicketNotificationServiceImplBase {
 
